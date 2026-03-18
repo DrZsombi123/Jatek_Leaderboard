@@ -13,8 +13,8 @@ namespace Jatek
         private DateTime idopont;
 
         public DateTime Idopont => idopont;
-        public int Pontszam => pont;
-        public string Jatekos => nev;
+        public int Pont => pont;
+        public string Nev => nev;
 
         public Eredmeny(string nev, int pont)
         {
