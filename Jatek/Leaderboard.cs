@@ -29,7 +29,7 @@ namespace Jatek
             Eredmeny ujEredmeny = new Eredmeny(nev, pont);
             eredmenyek.Add(ujEredmeny);
         }
-        public List<string> GetBoard() { return eredmenyek; }
+        public List<Eredmeny> GetBoard() { return eredmenyek; }
 
         public void Reset() {
             eredmenyek.Clear();
