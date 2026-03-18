@@ -26,7 +26,7 @@ namespace Jatek
 
         public override string ToString()
         {
-            return $"Név: {nev} ;Pont: {pont}; Idő: {idopont}";
+            return $"{nev}\t{pont}\t{idopont}";
         }
     }
 }
