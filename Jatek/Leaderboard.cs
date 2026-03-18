@@ -25,13 +25,15 @@ namespace Jatek
             this.Date = date;
         }
 
-        public void Rogzit(string nev, int pont) {
+        public void Rogzit(string nev, int pont)
+        {
             Eredmeny ujEredmeny = new Eredmeny(nev, pont);
             eredmenyek.Add(ujEredmeny);
         }
         public List<Eredmeny> GetBoard() { return eredmenyek; }
 
-        public void Reset() {
+        public void Reset()
+        {
             eredmenyek.Clear();
         }
 

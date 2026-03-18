@@ -8,7 +8,7 @@
             leaderboard.Rogzit("Player1", 100);
             leaderboard.Rogzit("Player2", 200);
 
-            List<Eredmeny> eredmenyek = leaderboard.GetBoard();
+            List<Eredmeny> eredmenyek = leaderboard.GetBoard().OrderByDescending(e => e.Pont).ToList();
             foreach (Eredmeny eredmeny in eredmenyek)
             {
                 Console.WriteLine($"Név: {eredmeny.Nev}, Pont: {eredmeny.Pont}");
