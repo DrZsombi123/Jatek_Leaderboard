@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Diagnostics.Tracing;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,7 @@ namespace Jatek
         int score;
         DateTime date;
         List<Eredmeny> eredmenyek = new List<Eredmeny>();
+        Dictionary<int, List<Eredmeny>> pontokSzerint = new Dictionary<int, List<Eredmeny>>();
 
         public string Name { get => name; set => name = value; }
         public int Score { get => score; set => score = value; }
@@ -29,12 +31,47 @@ namespace Jatek
         {
             Eredmeny ujEredmeny = new Eredmeny(nev, pont);
             eredmenyek.Add(ujEredmeny);
+
+            eredmenyek = eredmenyek.OrderByDescending(e => e.Pont).ToList();
+
+            if (!pontokSzerint.ContainsKey(pont))
+            {
+                pontokSzerint[pont] = new List<Eredmeny>();
+            }
+            pontokSzerint[pont].Add(ujEredmeny);
         }
         public List<Eredmeny> GetBoard() { return eredmenyek; }
 
         public void Reset()
         {
             eredmenyek.Clear();
+        }
+
+        public List<Eredmeny> GetResults(int position)
+        {
+            var rendezettPontok = pontokSzerint.Keys.OrderByDescending(k => k).ToList();
+            int currentPosition = 1;
+
+            foreach (var pont in rendezettPontok)
+            {
+                var lista = pontokSzerint[pont];
+
+                if (currentPosition == position)
+                {
+                    return new List<Eredmeny>(lista);
+                }
+
+                currentPosition++; 
+            }
+            throw new ArgumentException($"Nincs {position}. helyezett.");
+
+
+            return new List<Eredmeny>();
+        }
+
+        public void RemoveResult(string nev)
+        {
+            eredmenyek.RemoveAll(e => e.Nev == nev);
         }
 
 
